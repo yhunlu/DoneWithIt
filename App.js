@@ -12,5 +12,5 @@ import ListingDetailsScreen from "./app/components/ListingDetailsScreen";
 
 import colors from "./app/config/colors";
 export default function App() {
-  return <ListingDetailsScreen />;
+  return <ViewImageScreen />;
 }

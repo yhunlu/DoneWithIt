@@ -11,13 +11,15 @@ import AppButton from "./app/components/AppButton";
 import Card from "./app/components/Card";
 import ListingDetailsScreen from "./app/components/ListingDetailsScreen";
 
+import ListItem from "./app/components/ListItem";
+
 import MessagesScreen from "./app/screens/MessagesScreen";
 
 import colors from "./app/config/colors";
 export default function App() {
   return (
     <Screen>
-      <Icon name="email" size={100} />
+      <ListItem title="My title" ImageComponent={<Icon name="email" />} />
     </Screen>
   );
 }

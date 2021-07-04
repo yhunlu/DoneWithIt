@@ -14,8 +14,9 @@ import ListItem from "./app/components/ListItem";
 
 import MessagesScreen from "./app/screens/MessagesScreen";
 import AccountScreen from "./app/screens/AccountScreen";
+import ListingsScreen from "./app/screens/ListingsScreen";
 
 import colors from "./app/config/colors";
 export default function App() {
-  return <AccountScreen />;
+  return <ListingsScreen />;
 }

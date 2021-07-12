@@ -18,9 +18,10 @@ import MessagesScreen from "./app/screens/MessagesScreen";
 import AccountScreen from "./app/screens/AccountScreen";
 import ListingsScreen from "./app/screens/ListingsScreen";
 import LoginScreen from "./app/screens/LoginScreen";
+import ListingEditScreen from "./app/screens/ListingEditScreen";
 
 import colors from "./app/config/colors";
 
 export default function App() {
-  return <LoginScreen />;
+  return <ListingEditScreen />;
 }

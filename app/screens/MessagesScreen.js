@@ -10,14 +10,16 @@ import ListItemDeleteAction from "../components/ListItemDeleteAction";
 const initialMessages = [
   {
     id: 1,
-    title: "T1",
-    description: "D1",
+    title: "Yahya Unlu",
+    description:
+      "Merhabalar, Ürününüz ile ilgili ebat detaylarını paylaşırmısınız?",
     image: require("../assets/me.jpg"),
   },
   {
     id: 2,
-    title: "T2",
-    description: "D2",
+    title: "Yahya Unlu",
+    description:
+      "Selamlar, Ürün hala elime ulaşmadı! kargoda problem mi var acaba?",
     image: require("../assets/me.jpg"),
   },
 ];
@@ -51,9 +53,17 @@ function MessagesScreen(props) {
         onRefresh={() => {
           setMessages([
             {
+              id: 1,
+              title: "Yahya Unlu",
+              description:
+                "Merhabalar, Ürününüz ile ilgili ebat detaylarını paylaşırmısınız?",
+              image: require("../assets/me.jpg"),
+            },
+            {
               id: 2,
-              title: "T2",
-              description: "D2",
+              title: "Yahya Unlu",
+              description:
+                "Selamlar, Ürün hala elime ulaşmadı! kargoda problem mi var acaba?",
               image: require("../assets/me.jpg"),
             },
           ]);

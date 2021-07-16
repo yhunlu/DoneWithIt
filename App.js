@@ -23,5 +23,5 @@ import ListingEditScreen from "./app/screens/ListingEditScreen";
 import colors from "./app/config/colors";
 
 export default function App() {
-  return <MessagesScreen />;
+  return <ListingEditScreen />;
 }

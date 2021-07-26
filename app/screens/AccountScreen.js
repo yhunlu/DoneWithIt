@@ -5,7 +5,6 @@ import Screen from "../components/Screen";
 import { ListItem, ListItemSeparator } from "../components/lists";
 import Icon from "../components/Icon";
 import colors from "../config/colors";
-
 const menuItems = [
   {
     title: "My Listings",

@@ -10,7 +10,7 @@ function UploadScreen({ onDone, progress = 0, visible = false }) {
     <Modal visible={visible}>
       <View style={styles.container}>
         {progress < 1 ? (
-          <ProgressBar progress={0.5} color={Colors.red800} />
+          <ProgressBar color={colors.primary} progress={progress} />
         ) : (
           <LottieView
             autoPlay

@@ -19,7 +19,7 @@ function ListingsScreen({ navigation }) {
     error,
     loading,
     request: loadListings,
-  } = useApi(listingsApi.getListings);
+  } = useApi(listingsApi.getListings, "listings");
 
   useEffect(() => {
     loadListings();

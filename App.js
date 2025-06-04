@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import * as Sentry from "sentry-expo";
 import { View, Text, TextInput, Switch, Button, Image } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -6,6 +7,12 @@ import { NavigationContainer } from "@react-navigation/native";
 
 import * as ImagePicker from "expo-image-picker";
 import * as Permissions from "expo-permissions";
+
+Sentry.init({
+  dsn: "https://examplePublicKey@o0.ingest.sentry.io/0",
+  enableInExpoDevelopment: true,
+  debug: false,
+});
 
 import WelcomeScreen from "./app/screens/WelcomeScreen";
 import ViewImageScreen from "./app/screens/ViewImageScreen";

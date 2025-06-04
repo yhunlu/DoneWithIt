@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import * as Sentry from "sentry-expo";
 import { View, Text, TextInput, Switch, Button, Image } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -6,6 +7,12 @@ import { NavigationContainer } from "@react-navigation/native";
 
 import * as ImagePicker from "expo-image-picker";
 import * as Permissions from "expo-permissions";
+
+Sentry.init({
+  dsn: "https://examplePublicKey@o0.ingest.sentry.io/0",
+  enableInExpoDevelopment: true,
+  debug: false,
+});
 
 import WelcomeScreen from "./app/screens/WelcomeScreen";
 import ViewImageScreen from "./app/screens/ViewImageScreen";
@@ -33,6 +40,10 @@ import ImageInputList from "./app/components/ImageInputList";
 import AuthNavigator from "./app/navigation/AuthNavigator";
 import navigationTheme from "./app/navigation/navigationTheme";
 import AppNavigator from "./app/navigation/AppNavigator";
+import useNotifications from "./app/hooks/useNotifications";
+import AuthContext from "./app/auth/context";
+import authStorage from "./app/auth/storage";
+import jwtDecode from "jwt-decode";
 
 const Tweets = ({ navigation }) => (
   <Screen>
@@ -93,9 +104,24 @@ const TabNavigator = () => (
 );
 
 export default function App() {
+  const [user, setUser] = useState();
+  useNotifications();
+
+  const restoreUser = async () => {
+    const token = await authStorage.getToken();
+    if (!token) return;
+    setUser(jwtDecode(token));
+  };
+
+  useEffect(() => {
+    restoreUser();
+  }, []);
+
   return (
-    <NavigationContainer theme={navigationTheme}>
-      <AppNavigator />
-    </NavigationContainer>
+    <AuthContext.Provider value={{ user, setUser }}>
+      <NavigationContainer theme={navigationTheme}>
+        {user ? <AppNavigator /> : <AuthNavigator />}
+      </NavigationContainer>
+    </AuthContext.Provider>
   );
 }

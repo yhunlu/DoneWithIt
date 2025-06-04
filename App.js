@@ -33,6 +33,10 @@ import ImageInputList from "./app/components/ImageInputList";
 import AuthNavigator from "./app/navigation/AuthNavigator";
 import navigationTheme from "./app/navigation/navigationTheme";
 import AppNavigator from "./app/navigation/AppNavigator";
+import useNotifications from "./app/hooks/useNotifications";
+import AuthContext from "./app/auth/context";
+import authStorage from "./app/auth/storage";
+import jwtDecode from "jwt-decode";
 
 const Tweets = ({ navigation }) => (
   <Screen>
@@ -93,9 +97,24 @@ const TabNavigator = () => (
 );
 
 export default function App() {
+  const [user, setUser] = useState();
+  useNotifications();
+
+  const restoreUser = async () => {
+    const token = await authStorage.getToken();
+    if (!token) return;
+    setUser(jwtDecode(token));
+  };
+
+  useEffect(() => {
+    restoreUser();
+  }, []);
+
   return (
-    <NavigationContainer theme={navigationTheme}>
-      <AppNavigator />
-    </NavigationContainer>
+    <AuthContext.Provider value={{ user, setUser }}>
+      <NavigationContainer theme={navigationTheme}>
+        {user ? <AppNavigator /> : <AuthNavigator />}
+      </NavigationContainer>
+    </AuthContext.Provider>
   );
 }
